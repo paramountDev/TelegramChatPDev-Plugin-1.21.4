@@ -1,0 +1,18 @@
+##################################
+#   TelegramChat Main Config
+#   Made by ParamountDev
+#   TG-Link: @paramount1_dev
+#   FunPay: https://funpay.com/uk/users/14397429/
+##################################
+
+
+
+# Bot configuration. Put your bot token and bot username in fields below.
+telegram:
+  bot-token: "YOUR_TELEGRAM_BOT_TOKEN"
+  bot-username: "@your_bot_username"
+
+
+# Voice messages configuration. Put your Voks Model folder name in fields below.
+voice-messages:
+  vosk_model: "voks_model_name"
