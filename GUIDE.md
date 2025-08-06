@@ -1,4 +1,4 @@
-# 👋 Welcome to TelegramChat Plugin Guide 
+# 👋 Welcome to TelegramChatPDev Plugin Guide 
 My name is ParamountDev, thank you for using my plugin! 
 
 ✅ Congratulations on installing the plugin!  
@@ -38,5 +38,7 @@ Simply drop the ImageFrame JAR into your server’s `plugins/` folder.
 Now you can link Telegram ↔ Minecraft chats, send voice messages, and display photos. 
 
 ## ⬇️ORDER PLUGIN⬇️
- `Contact me on [Telegram](t.me/paramount1_dev)`
- `Contact me on [FunPay](funpay.com/uk/users/14397429/)`
+
+Contact me on [Telegram](t.me/paramount1_dev) 
+
+Contact me on [FunPay](funpay.com/uk/users/14397429/)
