@@ -28,8 +28,8 @@ Let’s get started with setting everything up:
      vosk_model: <FOLDER_NAME>
 
 ## 🔧 STEP 3. ImageFrame Plugin
-1. To display images and photos, install [ImageFrame](https://www.spigotmc.org/resources/imageframe-load-images-on-maps-item-frames-support-gifs-map-markers-survival-friendly.106031/) plugins (v1.8.5 or newer):
-2.Simply drop the ImageFrame JAR into your server’s `plugins/` folder.
+1. To display images and photos, install [ImageFrame](https://www.spigotmc.org/resources/imageframe-load-images-on-maps-item-frames-support-gifs-map-markers-survival-friendly.106031/) plugins (v1.8.5 or newer).
+2. Simply drop the ImageFrame JAR into your server’s `plugins/` folder.
 
 ## 🔧 STEP 4. ffmpeg
 1. Download ffmpeg.exe from my [DropBox](https://www.dropbox.com/scl/fo/kv2zls9moe3y5r3jx11dv/AKC2Bxy0wOHCdFW_CPCOsl0?rlkey=ekomb81x2q6m04m473s7pzqws&st=i8t3dmmn&dl=1)
