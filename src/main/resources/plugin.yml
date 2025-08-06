@@ -14,5 +14,10 @@ commands:
   showimage:
     usage: /showimage name
   listenvoice:
-    description: Получить текст из голосового сообщения
     usage: /listenvoice <id>
+
+
+
+
+
+

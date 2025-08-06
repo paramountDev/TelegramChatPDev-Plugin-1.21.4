@@ -5,14 +5,15 @@
 #   FunPay: https://funpay.com/uk/users/14397429/
 ##################################
 
+# Read the guide.txt before using plugin.
 
 
 # Bot configuration. Put your bot token and bot username in fields below.
 telegram:
-  bot-token: "YOUR_TELEGRAM_BOT_TOKEN"
-  bot-username: "@your_bot_username"
+  bot-token: "YOUR_BOT_TOKEN"
+  bot-username: "@YOUR_USERNAME_HERE"
 
 
-# Voice messages configuration. Put your Voks Model folder name in fields below.
+# Voice messages configuration. Put your Vosk Model folder name in fields below.
 voice-messages:
-  vosk_model: "voks_model_name"
+  vosk_model: "FOLDER_NAME"

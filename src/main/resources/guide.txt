@@ -1,7 +1,7 @@
 👋 Hello! I’m ParamountDev!
 Welcome to the Telegram–Minecraft Bridge Plugin Guide.
 
-Congratulations on installing the plugin! Let’s get started:
+⭐ Congratulations on installing the plugin! Let’s get started:
 
 ────────────────────────────────────────
  STEP 1. Create Your Bot
@@ -45,5 +45,5 @@ Simply drop the ImageFrame JAR into your server’s `plugins/` folder.
 Now you can link Telegram ↔ Minecraft chats, send voice messages, and display photos.
 
 ❓ Questions or custom plugin orders?
-Contact me on Telegram: t.me/paramount1_dev
-Contact me on FunPay: funpay.com/uk/users/14397429/
+⭐ Contact me on Telegram: t.me/paramount1_dev
+⭐ Contact me on FunPay: funpay.com/uk/users/14397429/
