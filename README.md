@@ -46,21 +46,20 @@ Created with ❤️ by [ParamountDev](https://t.me/paramount1_dev)
 
 ---
 
-## 👤 Author  
-**ParamountDev**  
-💬 Telegram: [@paramount1_dev](https://t.me/paramount1_dev)
+## ⭐ Support / Orders  
+Need custom plugins or help with **TelegramChatPDev**?  
+📬 Contact me on Telegram: [@paramount1_dev](https://t.me/paramount1_dev)
+
+---
+
+## 🔧 Guide
+Simple guide how to setup **TelegramChatPDev** - [GUIDE](https://github.com/paramountDev/TelegramChatPDev/blob/main/GUIDE.md)
 
 ---
 
 ## 💡 License  
 This plugin is distributed under a **closed license**.  
 Please contact the author for usage rights or customizations.
-
----
-
-## ⭐ Support / Orders  
-Need custom plugins or help with **TelegramChatPDev**?  
-📬 Contact me on Telegram: [@paramount1_dev](https://t.me/paramount1_dev)
 
 ---
 
