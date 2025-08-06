@@ -35,5 +35,4 @@ Let’s get started with setting everything up:
 Now you can link Telegram ↔ Minecraft chats, send voice messages, and display photos. 
 
 ## ⬇️ORDER PLUGIN⬇️
-Contact me on [Telegram](t.me/paramount1_dev).
-Contact me on [FunPay](funpay.com/uk/users/14397429/).
+Contact me on [Telegram](t.me/paramount1_dev) or [FunPay](funpay.com/uk/users/14397429/).
