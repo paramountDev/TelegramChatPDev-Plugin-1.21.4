@@ -28,7 +28,7 @@ Created with ❤️ by [ParamountDev](https://t.me/paramount1_dev)
 | 🖼️ Telegram → ImageFrame | Send photos in Telegram → show them in Minecraft |
 | 🎤 Voice Messages to Text | Use Vosk model to convert voice to readable messages |
 | 😊 Emoji Friendly | Emojis sent via Telegram are rendered in-game |
-| 🔒 Secure Player Linking | Accept/Deny requests via command |
+| 🔒 Secure Player Linking | Accept/Deny requests via button click |
 
 ---
 
@@ -48,7 +48,7 @@ Created with ❤️ by [ParamountDev](https://t.me/paramount1_dev)
 
 ## ⭐ Support / Orders  
 Need custom plugins or help with **TelegramChatPDev**?  
-📬 Contact me on Telegram: [@paramount1_dev](https://t.me/paramount1_dev)
+📬 Contact me on [Telegram](https://t.me/paramount1_dev) or [FunPay](funpay.com/uk/users/14397429/).
 
 ---
 
