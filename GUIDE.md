@@ -37,8 +37,6 @@ Simply drop the ImageFrame JAR into your server’s `plugins/` folder.
 ## ✅ You’re All Set! ✅
 Now you can link Telegram ↔ Minecraft chats, send voice messages, and display photos. 
 
-# ✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨
-# ❓ Questions or custom plugin orders?
-# Contact me on [Telegram](t.me/paramount1_dev)
-# Contact me on [FunPay](funpay.com/uk/users/14397429/)
-# ✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨
+## ⬇️ORDER PLUGIN⬇️
+ Contact me on [Telegram](t.me/paramount1_dev)
+ Contact me on [FunPay](funpay.com/uk/users/14397429/)
