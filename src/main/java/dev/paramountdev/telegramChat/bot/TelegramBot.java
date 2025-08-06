@@ -56,14 +56,16 @@ public class TelegramBot extends TelegramLongPollingBot {
     public final Map<String, String> voiceTranscripts = new HashMap<>();
 
 
-    private String voksModelPath = config.getString("voice-messages.vosk_model");
+    private String voksModelPath;
 
 
     public TelegramBot(String token, String username, TelegramChat plugin) {
         this.token = token;
         this.username = username;
         this.plugin = plugin;
-        loadConfig(plugin);
+        this.config = plugin.getConfig();
+
+        this.voksModelPath = config.getString("voks-messages.voks_model");
     }
 
     public void start() {
@@ -621,11 +623,6 @@ public class TelegramBot extends TelegramLongPollingBot {
 
 
     public void stop() {
-    }
-
-    public void loadConfig(JavaPlugin plugin) {
-        plugin.saveDefaultConfig();
-        this.config = plugin.getConfig();
     }
 
 

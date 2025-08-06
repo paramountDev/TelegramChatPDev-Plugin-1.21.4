@@ -33,15 +33,24 @@ Welcome to the Telegram–Minecraft Bridge Plugin Guide.
  STEP 3. ImageFrame Plugin
 ────────────────────────────────────────
 
-To display images and photos, install **ImageFrame** (v1.8.5 or newer):
+1. To display images and photos, install **ImageFrame** (v1.8.5 or newer):
 https://www.spigotmc.org/resources/imageframe-load-images-on-maps-item-frames-support-gifs-map-markers-survival-friendly.106031/
 
-Simply drop the ImageFrame JAR into your server’s `plugins/` folder.
+2. Simply drop the ImageFrame JAR into your server’s `plugins/` folder.
+
+────────────────────────────────────────
+ STEP 4. Install FFMPEG
+────────────────────────────────────────
+1. Download ffmpeg.exe from my DropBox:
+https://www.dropbox.com/scl/fo/kv2zls9moe3y5r3jx11dv/AKC2Bxy0wOHCdFW_CPCOsl0?rlkey=ekomb81x2q6m04m473s7pzqws&st=i8t3dmmn&dl=1
+
+2. Put in into TelegramChatPDev/ffmpeg folder.
 
 ────────────────────────────────────────
  You’re All Set!
 ────────────────────────────────────────
 
+Turn off and turn on your server!
 Now you can link Telegram ↔ Minecraft chats, send voice messages, and display photos.
 
 ❓ Questions or custom plugin orders?

@@ -4,6 +4,7 @@ import dev.paramountdev.telegramChat.bot.TelegramBot;
 import dev.paramountdev.telegramChat.bot.utils.EmojiConvertor;
 import dev.paramountdev.telegramChat.commands.TgChatCommand;
 import dev.paramountdev.telegramChat.pictures.ImageCommand;
+import dev.paramountdev.telegramChat.utils.FolderLoader;
 import dev.paramountdev.telegramChat.utils.FramesListener;
 import dev.paramountdev.telegramChat.voices.VoiceCommand;
 import org.bukkit.Bukkit;
@@ -33,6 +34,9 @@ public final class TelegramChat extends JavaPlugin implements Listener, CommandE
         this.botToken = getConfig().getString("telegram.bot-token");
         this.botUsername = getConfig().getString("telegram.bot-username");
 
+        FolderLoader.exportResource("guide.txt");
+        FolderLoader.createPluginFolders();
+
         setUpBot();
         setUpPlugin();
 
@@ -48,6 +52,8 @@ public final class TelegramChat extends JavaPlugin implements Listener, CommandE
 
         sendSignatureToConsole("disabled");
     }
+
+
 
 
     private void setUpBot(){
