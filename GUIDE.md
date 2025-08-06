@@ -19,7 +19,6 @@ Let’s get started with setting everything up:
     ```yaml
      bot-username: <YOUR_USERNAME_HERE>
 
-
 ## 🔧 STEP 2. Voice Message Support
 1. Visit: [Vosk Models Site](https://alphacephei.com/vosk/models)
 2. Download the **small** model for your language.
@@ -28,18 +27,13 @@ Let’s get started with setting everything up:
     ```yaml
      vosk_model: <FOLDER_NAME>
 
-
 ## 🔧 STEP 3. ImageFrame Plugin
-1. To display images and photos, install **ImageFrame** plugins (v1.8.5 or newer):
-2. [ImageFrame](https://www.spigotmc.org/resources/imageframe-load-images-on-maps-item-frames-support-gifs-map-markers-survival-friendly.106031/)
-
-Simply drop the ImageFrame JAR into your server’s `plugins/` folder.
+1. To display images and photos, install [ImageFrame](https://www.spigotmc.org/resources/imageframe-load-images-on-maps-item-frames-support-gifs-map-markers-survival-friendly.106031/) plugins (v1.8.5 or newer):
+2.Simply drop the ImageFrame JAR into your server’s `plugins/` folder.
 
 ## ✅ You’re All Set! ✅
 Now you can link Telegram ↔ Minecraft chats, send voice messages, and display photos. 
 
 ## ⬇️ORDER PLUGIN⬇️
-
-Contact me on [Telegram](t.me/paramount1_dev) 
-
-Contact me on [FunPay](funpay.com/uk/users/14397429/)
+Contact me on [Telegram](t.me/paramount1_dev).
+Contact me on [FunPay](funpay.com/uk/users/14397429/).
