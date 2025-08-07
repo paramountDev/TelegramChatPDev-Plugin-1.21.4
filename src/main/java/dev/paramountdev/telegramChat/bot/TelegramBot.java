@@ -1,7 +1,9 @@
 package dev.paramountdev.telegramChat.bot;
 
 import dev.paramountdev.telegramChat.TelegramChat;
+import dev.paramountdev.telegramChat.bot.handlers.VoiceHandler;
 import dev.paramountdev.telegramChat.bot.utils.EmojiConvertor;
+import dev.paramountdev.telegramChat.bot.handlers.ImageHandler;
 import dev.paramountdev.telegramChat.bot.utils.OggToWavConvertor;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ClickEvent;
@@ -12,12 +14,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
-import org.telegram.telegrambots.meta.api.objects.PhotoSize;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
@@ -50,14 +50,15 @@ public class TelegramBot extends TelegramLongPollingBot {
     private TelegramChat plugin;
     private FileConfiguration config;
 
+    private ImageHandler imageHandler;
+    private VoiceHandler voiceHandler;
+
     private final Map<Long, Long> connectionTimestamps = new HashMap<>(); // chatId -> timestamp
     private final Map<Long, String> telegramUsernames = new HashMap<>(); // chatId -> telegram username
-
 
     private final Map<String, Long> linkedPlayers = new HashMap<>(); // playerName -> telegramChatId
     private final Map<Long, String> linkedUsers = new HashMap<>();   // telegramChatId -> playerName
     private final Map<String, Long> pendingRequests = new HashMap<>(); // playerName -> telegramChatId
-
 
     public final Map<String, String> voiceTranscripts = new HashMap<>();
 
@@ -72,6 +73,10 @@ public class TelegramBot extends TelegramLongPollingBot {
         this.config = plugin.getConfig();
 
         this.voksModelPath = config.getString("voice-messages.vosk_model");
+
+        this.voiceHandler = new VoiceHandler(plugin, this, token, voksModelPath);
+        this.imageHandler = new ImageHandler(plugin, this, token);
+
     }
 
     public void start() {
@@ -258,12 +263,12 @@ public class TelegramBot extends TelegramLongPollingBot {
             String messageType = getMessageType(msg);
 
             if (messageType.equalsIgnoreCase("Sent a photo")) {
-                handlePhotoMessage(msg, username);
+                imageHandler.handlePhotoMessage(msg, username);
                 return;
             }
 
             if (messageType.equalsIgnoreCase("Sent a voice message")) {
-                handleVoiceMessage(msg, username);
+                voiceHandler.handleVoiceMessage(msg, username);
                 return;
             }
 
@@ -324,40 +329,6 @@ public class TelegramBot extends TelegramLongPollingBot {
             e.printStackTrace();
         }
     }
-
-
-    public void sendMessage(long chatId, String text) {
-        SendMessage msg = new SendMessage();
-        msg.setChatId(String.valueOf(chatId));
-        msg.setText(text);
-        msg.setParseMode("HTML");
-        try {
-            execute(msg);
-        } catch (TelegramApiException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void stopChat(long chatId) {
-        String player = linkedUsers.remove(chatId);
-        if (player != null) {
-            linkedPlayers.remove(player);
-            Player p = Bukkit.getPlayerExact(player);
-            if (p != null) {
-                p.sendMessage(" ");
-                p.sendMessage("§c❌ Telegram chat disconnected.");
-                p.sendMessage(" ");
-            }
-        }
-        sendMessage(chatId, """
-                <b>❌ Connection ended</b>
-                
-                Your chat with the Minecraft player has been disconnected.
-                """);
-
-
-    }
-
 
     private void sendOnlinePlayersList(long chatId) {
         Player[] onlinePlayers = Bukkit.getOnlinePlayers().toArray(new Player[0]);
@@ -438,181 +409,50 @@ public class TelegramBot extends TelegramLongPollingBot {
     }
 
 
-    // VOICE MESSAGES
 
-    private void handleVoiceMessage(Message msg, String username) {
-        if (!msg.hasVoice()) return;
-
+    public void sendMessage(long chatId, String text) {
+        SendMessage msg = new SendMessage();
+        msg.setChatId(String.valueOf(chatId));
+        msg.setText(text);
+        msg.setParseMode("HTML");
         try {
-            File voiceDir = new File(plugin.getDataFolder(), "voice_messages");
-            if (!voiceDir.exists()) voiceDir.mkdirs();
-
-            String fileId = msg.getVoice().getFileId();
-            String fileUniqueId = msg.getVoice().getFileUniqueId();
-            String fileName = "voice_" + fileUniqueId + ".ogg";
-
-            File savedFile = new File(voiceDir, fileName);
-            downloadFileToDisk(fileId, savedFile);
-
-            File wavFile;
-            try {
-                wavFile = OggToWavConvertor.convertOggToWav(savedFile);
-            } catch (Exception e) {
-                e.printStackTrace();
-                return;
-            }
-
-
-            String command = "/listenvoice " + fileUniqueId;
-
-            String text = recognizeSpeech(wavFile);
-            voiceTranscripts.put(fileUniqueId, text);
-
-            String message = "§b[TG] §7" + username + ": §fSent a voice message ";
-
-            TextComponent viewButton = new TextComponent("§b[LISTEN]");
-            viewButton.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, command));
-            viewButton.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
-                    new ComponentBuilder("§7Click to view text from voice message").create()));
-
-            if (!linkedUsers.containsKey(msg.getChatId())) {
-                sendMessage(msg.getChatId(), "<b>❌ You are not connected to a chat.</b>");
-                return;
-            }
-
-            String playerName = linkedUsers.get(msg.getChatId());
-            Player player = Bukkit.getPlayerExact(playerName);
-            if (player == null) {
-                sendMessage(msg.getChatId(), "<b>❌ Player is offline. Disconnected. </b>");
-                stopChat(msg.getChatId());
-                return;
-            }
-
-            player.sendMessage("");
-            player.spigot().sendMessage(new ComponentBuilder(message).append(viewButton).create());
-            player.sendMessage("");
-            player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_FLUTE, 1f, 1f);
-            player.playSound(player.getLocation(), Sound.ENTITY_ILLUSIONER_PREPARE_BLINDNESS, 1f, 1f);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public String recognizeSpeech(File audioFile) {
-        File modelDir = new File(plugin.getDataFolder(), "models/" + voksModelPath);
-        try (Model model = new Model(modelDir.getAbsolutePath());
-             AudioInputStream ais = AudioSystem.getAudioInputStream(audioFile)) {
-
-            AudioFormat baseFormat = ais.getFormat();
-            AudioFormat targetFormat = new AudioFormat(
-                    AudioFormat.Encoding.PCM_SIGNED,
-                    16000,
-                    16,
-                    1,
-                    2,
-                    16000,
-                    false
-            );
-            AudioInputStream din = AudioSystem.getAudioInputStream(targetFormat, ais);
-
-            Recognizer recognizer = new Recognizer(model, 16000);
-            byte[] buffer = new byte[4096];
-            int bytesRead;
-
-            while ((bytesRead = din.read(buffer)) >= 0) {
-                recognizer.acceptWaveForm(buffer, bytesRead);
-            }
-
-            String resultJson = recognizer.getFinalResult();
-            int textStart = resultJson.indexOf("\"text\"") + 8;
-            int textEnd = resultJson.lastIndexOf("\"");
-            return resultJson.substring(textStart, textEnd);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    private void downloadFileToDisk(String fileId, File destination) throws TelegramApiException, IOException {
-        org.telegram.telegrambots.meta.api.objects.File telegramFile = getTelegramFile(fileId);
-        String filePath = telegramFile.getFilePath();
-
-        String fileUrl = "https://api.telegram.org/file/bot" + token + "/" + filePath;
-
-        try (InputStream in = new URL(fileUrl).openStream();
-             FileOutputStream out = new FileOutputStream(destination)) {
-            byte[] buffer = new byte[1024];
-            int bytesRead;
-            while ((bytesRead = in.read(buffer)) != -1) {
-                out.write(buffer, 0, bytesRead);
-            }
-        }
-    }
-
-    // VOICE MESSAGES
-
-
-    // PHOTO MESSAGES
-
-    private void handlePhotoMessage(Message msg, String username) {
-        List<PhotoSize> photos = msg.getPhoto();
-        if (photos == null || photos.isEmpty()) return;
-
-        PhotoSize best = photos.get(photos.size() - 1);
-
-        try {
-            org.telegram.telegrambots.meta.api.objects.File telegramFile = getTelegramFile(best.getFileId());
-            String filePath = telegramFile.getFilePath();
-
-            String url = "https://api.telegram.org/file/bot" + token + "/" + filePath;
-
-            String imageName = "telegramImage_" + best.getFileUniqueId();
-
-            int width = 5;
-            int height = 5;
-
-            sendImageMessageToMinecraft(msg.getChatId(), username, imageName, url, width, height);
-
-
+            execute(msg);
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
     }
 
-    private org.telegram.telegrambots.meta.api.objects.File getTelegramFile(String fileId) throws TelegramApiException {
-        return execute(new org.telegram.telegrambots.meta.api.methods.GetFile(fileId));
-    }
-
-    public void sendImageMessageToMinecraft(Long chatId, String username, String imageName, String url, int width, int height) {
-        String message = "§b[TG] §7" + username + ": §fSent a photo ";
-
-
-        String command = "/showimage " + imageName + " " + url + " " + width + " " + height;
-
-        TextComponent viewButton = new TextComponent("§b[WATCH]");
-        viewButton.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, command));
-        viewButton.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
-                new ComponentBuilder("§7Click to view the image").create()));
-
-        String playerName = linkedUsers.get(chatId);
-        Player player = Bukkit.getPlayerExact(playerName);
-        if (player == null) {
-            stopChat(chatId);
-            return;
+    public void stopChat(long chatId) {
+        String player = linkedUsers.remove(chatId);
+        if (player != null) {
+            linkedPlayers.remove(player);
+            Player p = Bukkit.getPlayerExact(player);
+            if (p != null) {
+                p.sendMessage(" ");
+                p.sendMessage("§c❌ Telegram chat disconnected.");
+                p.sendMessage(" ");
+            }
         }
+        sendMessage(chatId, """
+                <b>❌ Connection ended</b>
+                
+                Your chat with the Minecraft player has been disconnected.
+                """);
 
-        player.sendMessage("");
-        player.spigot().sendMessage(new ComponentBuilder(message).append(viewButton).create());
-        player.sendMessage("");
 
-        player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_FLUTE, 1f, 1f);
-        player.playSound(player.getLocation(), Sound.ENTITY_ILLUSIONER_PREPARE_BLINDNESS, 1f, 1f);
+    }
+
+    public String formatTimestamp(long timestamp) {
+        if (timestamp <= 0) return "Unknown";
+
+        Instant instant = Instant.ofEpochMilli(timestamp);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm:ss")
+                .withZone(ZoneId.systemDefault());
+
+        return formatter.format(instant);
     }
 
 
-    // PHOTO MESSAGES
 
 
     private String getMessageType(Message msg) {
@@ -626,21 +466,9 @@ public class TelegramBot extends TelegramLongPollingBot {
         return "Sent an unsupported message type";
     }
 
-
-
-
-
-
-    public String formatTimestamp(long timestamp) {
-        if (timestamp <= 0) return "Unknown";
-
-        Instant instant = Instant.ofEpochMilli(timestamp);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm:ss")
-                .withZone(ZoneId.systemDefault());
-
-        return formatter.format(instant);
+    public org.telegram.telegrambots.meta.api.objects.File getTelegramFile(String fileId) throws TelegramApiException {
+        return execute(new org.telegram.telegrambots.meta.api.methods.GetFile(fileId));
     }
-
 
     public long getConnectionTime(Long chatId) {
         return connectionTimestamps.getOrDefault(chatId, -1L);
@@ -648,16 +476,6 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     public String getTelegramUsernameByChatId(long chatId) {
         return telegramUsernames.getOrDefault(chatId, "Unknown");
-    }
-
-
-
-    public void stop() {
-    }
-
-
-    public void setPlugin(TelegramChat plugin) {
-        this.plugin = plugin;
     }
 
     public Map<Long, Long> getConnectionTimestamps() {
@@ -676,6 +494,13 @@ public class TelegramBot extends TelegramLongPollingBot {
         return linkedPlayers;
     }
 
+    public Map<String, String> getVoiceTranscripts() {
+        return voiceTranscripts;
+    }
+
+    public VoiceHandler getVoiceHandler() {
+        return voiceHandler;
+    }
 
     @Override
     public String getBotUsername() {
@@ -685,6 +510,12 @@ public class TelegramBot extends TelegramLongPollingBot {
     @Override
     public String getBotToken() {
         return token;
+    }
+
+    public void stop() {}
+
+    public void setPlugin(TelegramChat plugin) {
+        this.plugin = plugin;
     }
 
 

@@ -37,7 +37,7 @@ public class VoiceCommand implements CommandExecutor {
                 player.sendMessage("§7🔄 Recognize the voice...");
 
                 Bukkit.getScheduler().runTaskAsynchronously(TelegramChat.getInstance(), () -> {
-                    String result = bot.recognizeSpeech(voiceFile);
+                    String result = bot.getVoiceHandler().recognizeSpeech(voiceFile);
                     if (result == null || result.trim().isEmpty()) result = "Unable to recognize voice.";
 
                     bot.voiceTranscripts.put(voiceId, result);
