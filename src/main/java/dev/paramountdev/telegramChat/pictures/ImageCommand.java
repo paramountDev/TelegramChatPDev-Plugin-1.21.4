@@ -32,7 +32,9 @@ import java.util.function.Consumer;
 
 public class ImageCommand implements CommandExecutor {
 
+    private static final List<ItemFrame> spawnedFrames = new ArrayList<>();;
     private int lifetimeSeconds = JavaPlugin.getProvidingPlugin(getClass()).getConfig().getInt("image-messages.lifetime", 60);
+
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -52,7 +54,6 @@ public class ImageCommand implements CommandExecutor {
             Vector up = new Vector(0, 1, 0);
             Vector forward = face.getDirection().multiply(-0.01);
 
-            List<ItemFrame> spawnedFrames = new ArrayList<>();
 
 
             for (int y = 0; y < height; y++) {
@@ -207,5 +208,8 @@ private Vector getRightDirection(BlockFace face) {
     }
 }
 
+    public static List<ItemFrame> getSpawnedFrames() {
+        return spawnedFrames;
+    }
 
 }
