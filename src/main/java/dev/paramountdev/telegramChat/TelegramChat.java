@@ -25,6 +25,8 @@ public final class TelegramChat extends JavaPlugin implements Listener, CommandE
     private String botToken;
     private String botUsername;
 
+    private String author;
+
     @Override
     public void onEnable() {
         plugin = this;
@@ -33,6 +35,13 @@ public final class TelegramChat extends JavaPlugin implements Listener, CommandE
 
         this.botToken = getConfig().getString("telegram.bot-token");
         this.botUsername = getConfig().getString("telegram.bot-username");
+
+        this.author = getConfig().getString("author");
+
+        if(!author.equals("ParamountDev")) {
+            sendAuthorErrorMessage();
+            Bukkit.getPluginManager().disablePlugin(this);
+        }
 
         FolderLoader.exportResource("guide.txt");
         FolderLoader.createPluginFolders();
@@ -135,7 +144,21 @@ public final class TelegramChat extends JavaPlugin implements Listener, CommandE
 
 
 
+    private void sendAuthorErrorMessage() {
+        final String reset = "\u001B[0m";
+        final int width = 58;
+        final String borderColor = "\u001B[95m";
 
+        ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
+
+        sendEmptyLinesToConsole(8, console);
+
+        console.sendMessage(borderColor + "╔" + "═".repeat(width) + "╗" + reset);
+        console.sendMessage(colorizeCenteredText("Do not change Author value in config.", width, "\u001B[35m", "\u001B[95m", "\u001B[35m") + reset);
+        console.sendMessage(borderColor + "╚" + "═".repeat(width) + "╝" + reset);
+
+        sendEmptyLinesToConsole(8, console);
+    }
 
     private void sendSignatureToConsole(String pluginStatus) {
         final String reset = "\u001B[0m";
@@ -143,7 +166,12 @@ public final class TelegramChat extends JavaPlugin implements Listener, CommandE
         final String borderColor = "\u001B[95m";
 
         ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
-
+        sendEmptyLinesToConsole(3, console);
+        console.sendMessage(colorizeCenteredText("↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑", width, "\u001B[35m", "\u001B[95m", "\u001B[35m") + reset);
+        sendEmptyLinesToConsole(1, console);
+        console.sendMessage(colorizeCenteredText("Don't be afraid of exceptions.", width, "\u001B[35m", "\u001B[95m", "\u001B[35m") + reset);
+        console.sendMessage(colorizeCenteredText("They may occur if you are running the plugin for the first time.", width, "\u001B[35m", "\u001B[95m", "\u001B[35m") + reset);
+        console.sendMessage(colorizeCenteredText("Follow the guide.txt and and set up the config.", width, "\u001B[35m", "\u001B[95m", "\u001B[35m") + reset);
         sendEmptyLinesToConsole(8, console);
 
         console.sendMessage(borderColor + "╔" + "═".repeat(width) + "╗" + reset);

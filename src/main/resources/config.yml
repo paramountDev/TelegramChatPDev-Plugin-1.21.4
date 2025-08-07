@@ -5,8 +5,11 @@
 #   FunPay: https://funpay.com/uk/users/14397429/
 ##################################
 
-# Read the guide.txt before using plugin.
+# Do not change this value.
+author: "ParamountDev"
 
+
+# Read the guide.txt before using plugin.
 
 # Bot configuration. Put your bot token and bot username in fields below.
 telegram:
@@ -17,3 +20,7 @@ telegram:
 # Voice messages configuration. Put your Vosk Model folder name in fields below.
 voice-messages:
   vosk_model: "FOLDER_NAME"
+
+# Image messages configuration.
+image-messages:
+  lifetime: 60   # seconds

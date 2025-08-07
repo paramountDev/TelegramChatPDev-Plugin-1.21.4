@@ -34,6 +34,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -46,6 +49,9 @@ public class TelegramBot extends TelegramLongPollingBot {
     private TelegramBotsApi api;
     private TelegramChat plugin;
     private FileConfiguration config;
+
+    private final Map<Long, Long> connectionTimestamps = new HashMap<>(); // chatId -> timestamp
+    private final Map<Long, String> telegramUsernames = new HashMap<>(); // chatId -> telegram username
 
 
     private final Map<String, Long> linkedPlayers = new HashMap<>(); // playerName -> telegramChatId
@@ -65,7 +71,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         this.plugin = plugin;
         this.config = plugin.getConfig();
 
-        this.voksModelPath = config.getString("voks-messages.voks_model");
+        this.voksModelPath = config.getString("voice-messages.vosk_model");
     }
 
     public void start() {
@@ -84,9 +90,11 @@ public class TelegramBot extends TelegramLongPollingBot {
             Message msg = update.getMessage();
             String text = msg.getText();
             String username = msg.getFrom().getUserName();
-            if (username == null)  {
+            if (username == null || username.isEmpty())  {
                 username = msg.getFrom().getFirstName();
             }
+
+            telegramUsernames.put(msg.getChatId(), username);
 
             if (text.equals("/start")) {
 
@@ -190,6 +198,8 @@ public class TelegramBot extends TelegramLongPollingBot {
                 player.spigot().sendMessage(centeredButtons);
                 player.sendMessage(" ");
                 player.sendMessage("§8§m----------------------------------------");
+
+                player.playSound(player.getLocation(), Sound.BLOCK_TRIAL_SPAWNER_EJECT_ITEM, 1, 1);
 
 
                 sendMessage(chatId, """
@@ -621,6 +631,26 @@ public class TelegramBot extends TelegramLongPollingBot {
 
 
 
+    public String formatTimestamp(long timestamp) {
+        if (timestamp <= 0) return "Unknown";
+
+        Instant instant = Instant.ofEpochMilli(timestamp);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm:ss")
+                .withZone(ZoneId.systemDefault());
+
+        return formatter.format(instant);
+    }
+
+
+    public long getConnectionTime(Long chatId) {
+        return connectionTimestamps.getOrDefault(chatId, -1L);
+    }
+
+    public String getTelegramUsernameByChatId(long chatId) {
+        return telegramUsernames.getOrDefault(chatId, "Unknown");
+    }
+
+
 
     public void stop() {
     }
@@ -628,6 +658,10 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     public void setPlugin(TelegramChat plugin) {
         this.plugin = plugin;
+    }
+
+    public Map<Long, Long> getConnectionTimestamps() {
+        return connectionTimestamps;
     }
 
     public Map<String, Long> getPendingRequests() {

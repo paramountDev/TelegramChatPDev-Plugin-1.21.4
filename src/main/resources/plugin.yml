@@ -1,4 +1,4 @@
-name: TelegramChat
+name: TelegramChatPDev
 version: '1.0'
 main: dev.paramountdev.telegramChat.TelegramChat
 api-version: '1.21'

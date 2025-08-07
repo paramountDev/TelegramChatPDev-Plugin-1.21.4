@@ -9,7 +9,7 @@
     <version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>TelegramChat_PDev</name>
+    <name>TelegramChatPDev</name>
 
     <properties>
         <java.version>21</java.version>
