@@ -1,6 +1,6 @@
 package dev.paramountdev.telegramChat.utils;
 
-import dev.paramountdev.telegramChat.pictures.ImageCommand;
+import dev.paramountdev.telegramChat.commands.ImageCommand;
 import org.bukkit.entity.ItemFrame;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

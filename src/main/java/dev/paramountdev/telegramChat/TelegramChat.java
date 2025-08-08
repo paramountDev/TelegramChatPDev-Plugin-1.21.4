@@ -3,7 +3,7 @@ package dev.paramountdev.telegramChat;
 import dev.paramountdev.telegramChat.bot.TelegramBot;
 import dev.paramountdev.telegramChat.bot.utils.EmojiConvertor;
 import dev.paramountdev.telegramChat.commands.TgChatCommand;
-import dev.paramountdev.telegramChat.pictures.ImageCommand;
+import dev.paramountdev.telegramChat.commands.ImageCommand;
 import dev.paramountdev.telegramChat.utils.FolderLoader;
 import dev.paramountdev.telegramChat.utils.FramesListener;
 import dev.paramountdev.telegramChat.voices.VoiceCommand;

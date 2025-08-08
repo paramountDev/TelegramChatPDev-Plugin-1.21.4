@@ -101,96 +101,96 @@ public class EmojiConvertor {
         emojiTranslations.put("🌙", "§7 moon §r");
 
 
-        textCodeToEmoji.put("%laugh%", "😂");             // смех
-        textCodeToEmoji.put("%love%", "❤️");              // любовь
-        textCodeToEmoji.put("%in_love%", "😍");           // влюблен
-        textCodeToEmoji.put("%kiss%", "😘");              // поцелуй
-        textCodeToEmoji.put("%rofl%", "🤣");              // ржунимагу
-        textCodeToEmoji.put("%cry%", "😭");               // плачу
-        textCodeToEmoji.put("%joy%", "😊");               // радость
-        textCodeToEmoji.put("%wink%", "😉");              // подмигиваю
-        textCodeToEmoji.put("%angry%", "😡");             // злюсь
-        textCodeToEmoji.put("%thank_you%", "🙏");         // спасибо
-        textCodeToEmoji.put("%thumbs_up%", "👍");         // ок
-        textCodeToEmoji.put("%thumbs_down%", "👎");       // не ок
-        textCodeToEmoji.put("%party%", "🎉");              // праздную
-        textCodeToEmoji.put("%birthday%", "🎂");           // праздник
-        textCodeToEmoji.put("%cool%", "😎");               // крутой
-        textCodeToEmoji.put("%sad%", "😢");                // грущу
-        textCodeToEmoji.put("%shock%", "😱");              // в шоке
-        textCodeToEmoji.put("%thinking%", "🤔");           // думаю
-        textCodeToEmoji.put("%mind_blown%", "🤯");         // взорван мозг
-        textCodeToEmoji.put("%clown%", "🤡");              // клоун
-        textCodeToEmoji.put("%poop%", "💩");               // какашка
-        textCodeToEmoji.put("%fire%", "🔥");               // огонь
-        textCodeToEmoji.put("%skull%", "💀");              // череп
-        textCodeToEmoji.put("%sleeping%", "😴");           // сплю
-        textCodeToEmoji.put("%drooling%", "🤤");           // слюни
-        textCodeToEmoji.put("%angel%", "😇");              // ангел
-        textCodeToEmoji.put("%eyes%", "👀");                // смотрю
-        textCodeToEmoji.put("%adoration%", "🥰");          // восторг
-        textCodeToEmoji.put("%huff%", "😤");                // фыркаю
-        textCodeToEmoji.put("%devil%", "😈");               // дьявол
-        textCodeToEmoji.put("%love_arrow%", "💘");          // влюблен
-        textCodeToEmoji.put("%broken_heart%", "💔");        // разбито сердце
-        textCodeToEmoji.put("%sparkling_heart%", "💖");     // сияющая любовь
-        textCodeToEmoji.put("%kiss_mark%", "💋");           // поцелуй
-        textCodeToEmoji.put("%vomit%", "🤮");                // рыгаю
-        textCodeToEmoji.put("%tongue_out%", "😜");          // шучу
-        textCodeToEmoji.put("%nervous_laugh%", "😅");       // нервный смех
-        textCodeToEmoji.put("%neutral%", "😐");              // нейтрал
-        textCodeToEmoji.put("%awkward%", "😬");              // неловко
-        textCodeToEmoji.put("%swearing%", "🤬");             // ругаюсь
-        textCodeToEmoji.put("%heart_eyes_cat%", "😻");      // мимими
-        textCodeToEmoji.put("%hugging%", "🤗");              // обнимаю
-        textCodeToEmoji.put("%nerd%", "🤓");                 // умник
-        textCodeToEmoji.put("%shushing%", "🤫");             // тише
-        textCodeToEmoji.put("%ghost%", "👻");                // привидение
-        textCodeToEmoji.put("%pumpkin%", "🎃");              // тыква
-        textCodeToEmoji.put("%sick%", "😷");                 // болею
-        textCodeToEmoji.put("%thermometer%", "🤒");          // температура
-        textCodeToEmoji.put("%injured%", "🤕");              // травма
-        textCodeToEmoji.put("%freezing%", "🥶");             // замерз
-        textCodeToEmoji.put("%hot%", "🥵");                   // жарко
-        textCodeToEmoji.put("%embarrassed%", "😳");          // смущен
-        textCodeToEmoji.put("%dazed%", "😵");                 // ошарашен
-        textCodeToEmoji.put("%drunk%", "🥴");                 // пьяный
-        textCodeToEmoji.put("%cowboy%", "🤠");                // ковбой
-        textCodeToEmoji.put("%smiling_cat%", "😺");           // улыбающийся кот
-        textCodeToEmoji.put("%fearful_cat%", "🙀");           // испуганный кот
-        textCodeToEmoji.put("%crying_cat%", "😿");            // плачущий кот
-        textCodeToEmoji.put("%dog%", "🐶");                    // собака
-        textCodeToEmoji.put("%cat%", "🐱");                    // кошка
-        textCodeToEmoji.put("%mouse%", "🐭");                  // мышка
-        textCodeToEmoji.put("%hamster%", "🐹");                // хомяк
-        textCodeToEmoji.put("%rabbit%", "🐰");                 // кролик
-        textCodeToEmoji.put("%fox%", "🦊");                    // лиса
-        textCodeToEmoji.put("%bear%", "🐻");                   // медведь
-        textCodeToEmoji.put("%panda%", "🐼");                  // панда
-        textCodeToEmoji.put("%koala%", "🐨");                  // коала
-        textCodeToEmoji.put("%tiger%", "🐯");                  // тигр
-        textCodeToEmoji.put("%lion%", "🦁");                   // лев
-        textCodeToEmoji.put("%cow%", "🐮");                    // корова
-        textCodeToEmoji.put("%pig%", "🐷");                    // свинья
-        textCodeToEmoji.put("%frog%", "🐸");                   // лягушка
-        textCodeToEmoji.put("%monkey%", "🐵");                 // обезьяна
-        textCodeToEmoji.put("%see_no_evil%", "🙈");            // не вижу
-        textCodeToEmoji.put("%hear_no_evil%", "🙉");           // не слышу
-        textCodeToEmoji.put("%speak_no_evil%", "🙊");          // молчу
-        textCodeToEmoji.put("%explosion%", "💥");              // взрыв
-        textCodeToEmoji.put("%bomb%", "💣");                   // бомба
-        textCodeToEmoji.put("%firecracker%", "🧨");            // петарда
-        textCodeToEmoji.put("%lightning%", "⚡");               // молния
-        textCodeToEmoji.put("%tornado%", "🌪️");               // торнадо
-        textCodeToEmoji.put("%rainbow%", "🌈");                 // радуга
-        textCodeToEmoji.put("%sun%", "☀️");                    // солнце
-        textCodeToEmoji.put("%rain%", "🌧️");                   // дождь
-        textCodeToEmoji.put("%snow%", "🌨️");                   // снег
-        textCodeToEmoji.put("%snowflake%", "❄️");              // снежинка
-        textCodeToEmoji.put("%drop%", "💧");                    // капля
-        textCodeToEmoji.put("%wave%", "🌊");                    // волна
-        textCodeToEmoji.put("%earth%", "🌍");                   // земля
-        textCodeToEmoji.put("%moon%", "🌙");                    // луна
+        textCodeToEmoji.put("%laugh%", "😂");
+        textCodeToEmoji.put("%love%", "❤️");
+        textCodeToEmoji.put("%in_love%", "😍");
+        textCodeToEmoji.put("%kiss%", "😘");
+        textCodeToEmoji.put("%rofl%", "🤣");
+        textCodeToEmoji.put("%cry%", "😭");
+        textCodeToEmoji.put("%joy%", "😊");
+        textCodeToEmoji.put("%wink%", "😉");
+        textCodeToEmoji.put("%angry%", "😡");
+        textCodeToEmoji.put("%thank_you%", "🙏");
+        textCodeToEmoji.put("%thumbs_up%", "👍");
+        textCodeToEmoji.put("%thumbs_down%", "👎");
+        textCodeToEmoji.put("%party%", "🎉");
+        textCodeToEmoji.put("%birthday%", "🎂");
+        textCodeToEmoji.put("%cool%", "😎");
+        textCodeToEmoji.put("%sad%", "😢");
+        textCodeToEmoji.put("%shock%", "😱");
+        textCodeToEmoji.put("%thinking%", "🤔");
+        textCodeToEmoji.put("%mind_blown%", "🤯");
+        textCodeToEmoji.put("%clown%", "🤡");
+        textCodeToEmoji.put("%poop%", "💩");
+        textCodeToEmoji.put("%fire%", "🔥");
+        textCodeToEmoji.put("%skull%", "💀");
+        textCodeToEmoji.put("%sleeping%", "😴");
+        textCodeToEmoji.put("%drooling%", "🤤");
+        textCodeToEmoji.put("%angel%", "😇");
+        textCodeToEmoji.put("%eyes%", "👀");
+        textCodeToEmoji.put("%adoration%", "🥰");
+        textCodeToEmoji.put("%huff%", "😤");
+        textCodeToEmoji.put("%devil%", "😈");
+        textCodeToEmoji.put("%love_arrow%", "💘");
+        textCodeToEmoji.put("%broken_heart%", "💔");
+        textCodeToEmoji.put("%sparkling_heart%", "💖");
+        textCodeToEmoji.put("%kiss_mark%", "💋");
+        textCodeToEmoji.put("%vomit%", "🤮");
+        textCodeToEmoji.put("%tongue_out%", "😜");
+        textCodeToEmoji.put("%nervous_laugh%", "😅");
+        textCodeToEmoji.put("%neutral%", "😐");
+        textCodeToEmoji.put("%awkward%", "😬");
+        textCodeToEmoji.put("%swearing%", "🤬");
+        textCodeToEmoji.put("%heart_eyes_cat%", "😻");
+        textCodeToEmoji.put("%hugging%", "🤗");
+        textCodeToEmoji.put("%nerd%", "🤓");
+        textCodeToEmoji.put("%shushing%", "🤫");
+        textCodeToEmoji.put("%ghost%", "👻");
+        textCodeToEmoji.put("%pumpkin%", "🎃");
+        textCodeToEmoji.put("%sick%", "😷");
+        textCodeToEmoji.put("%thermometer%", "🤒");
+        textCodeToEmoji.put("%injured%", "🤕");
+        textCodeToEmoji.put("%freezing%", "🥶");
+        textCodeToEmoji.put("%hot%", "🥵");
+        textCodeToEmoji.put("%embarrassed%", "😳");
+        textCodeToEmoji.put("%dazed%", "😵");
+        textCodeToEmoji.put("%drunk%", "🥴");
+        textCodeToEmoji.put("%cowboy%", "🤠");
+        textCodeToEmoji.put("%smiling_cat%", "😺");
+        textCodeToEmoji.put("%fearful_cat%", "🙀");
+        textCodeToEmoji.put("%crying_cat%", "😿");
+        textCodeToEmoji.put("%dog%", "🐶");
+        textCodeToEmoji.put("%cat%", "🐱");
+        textCodeToEmoji.put("%mouse%", "🐭");
+        textCodeToEmoji.put("%hamster%", "🐹");
+        textCodeToEmoji.put("%rabbit%", "🐰");
+        textCodeToEmoji.put("%fox%", "🦊");
+        textCodeToEmoji.put("%bear%", "🐻");
+        textCodeToEmoji.put("%panda%", "🐼");
+        textCodeToEmoji.put("%koala%", "🐨");
+        textCodeToEmoji.put("%tiger%", "🐯");
+        textCodeToEmoji.put("%lion%", "🦁");
+        textCodeToEmoji.put("%cow%", "🐮");
+        textCodeToEmoji.put("%pig%", "🐷");
+        textCodeToEmoji.put("%frog%", "🐸");
+        textCodeToEmoji.put("%monkey%", "🐵");
+        textCodeToEmoji.put("%see_no_evil%", "🙈");
+        textCodeToEmoji.put("%hear_no_evil%", "🙉");
+        textCodeToEmoji.put("%speak_no_evil%", "🙊");
+        textCodeToEmoji.put("%explosion%", "💥");
+        textCodeToEmoji.put("%bomb%", "💣");
+        textCodeToEmoji.put("%firecracker%", "🧨");
+        textCodeToEmoji.put("%lightning%", "⚡");
+        textCodeToEmoji.put("%tornado%", "🌪️");
+        textCodeToEmoji.put("%rainbow%", "🌈");
+        textCodeToEmoji.put("%sun%", "☀️");
+        textCodeToEmoji.put("%rain%", "🌧️");
+        textCodeToEmoji.put("%snow%", "🌨️");
+        textCodeToEmoji.put("%snowflake%", "❄️");
+        textCodeToEmoji.put("%drop%", "💧");
+        textCodeToEmoji.put("%wave%", "🌊");
+        textCodeToEmoji.put("%earth%", "🌍");
+        textCodeToEmoji.put("%moon%", "🌙");
 
     }
 

@@ -1,4 +1,4 @@
-package dev.paramountdev.telegramChat.pictures;
+package dev.paramountdev.telegramChat.commands;
 
 import com.loohp.imageframe.ImageFrame;
 import com.loohp.imageframe.objectholders.DitheringType;

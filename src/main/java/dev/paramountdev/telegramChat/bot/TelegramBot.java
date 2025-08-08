@@ -229,7 +229,6 @@ public class TelegramBot extends TelegramLongPollingBot {
             long chatId = msg.getChatId();
 
             if (text.equals("/start")) {
-                // Кнопка выбора
             }
 
             if (text.equals("/stop")) {

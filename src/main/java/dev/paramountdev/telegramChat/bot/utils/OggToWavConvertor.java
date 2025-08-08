@@ -24,7 +24,7 @@ public class OggToWavConvertor {
                 wavFile.getAbsolutePath()
         );
 
-        pb.redirectErrorStream(true); // объединяет stderr и stdout
+        pb.redirectErrorStream(true);
         Process process = pb.start();
         int exitCode = process.waitFor();
 
