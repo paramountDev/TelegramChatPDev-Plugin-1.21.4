@@ -58,7 +58,7 @@ Simple guide how to setup **TelegramChatPDev** - [GUIDE](https://github.com/para
 ---
 
 ## 💡 License  
-This plugin is distributed under a **closed license**.  
+This plugin is distributed under a **[closed license](https://github.com/paramountDev/TelegramChatPDev-Plugin-1.21.4/blob/main/LISENCE.md)**.  
 Please contact the author for usage rights or customizations.
 
 ---
